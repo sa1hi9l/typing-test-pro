@@ -1,5 +1,6 @@
 package com.example.typingtest.service;
 
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -11,15 +12,18 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
-
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = new BCryptPasswordEncoder();
-    }
+    public UserService(UserRepository userRepository,
+	                   BCryptPasswordEncoder passwordEncoder) {
+		this.userRepository = userRepository;
+		this.passwordEncoder = passwordEncoder;
+	}
+    
 
     public User registerUser(String username, String rawPassword) {
-        String encodedPassword = passwordEncoder.encode(rawPassword);
-        User user = new User(username, encodedPassword);
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() ->
+                    new UsernameNotFoundException("User not found"));
+
         return userRepository.save(user);
     }
 }

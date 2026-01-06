@@ -32,4 +32,10 @@ public class AuthController {
         model.addAttribute("message", "Registration successful!");
         return "signup";
     }
+    
+    @GetMapping("/login")
+    public String loginPage() {
+        return "login";
+    }
+
 }
