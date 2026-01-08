@@ -6,6 +6,8 @@ import com.example.typingtest.model.TestResult;
 import com.example.typingtest.model.User;
 import com.example.typingtest.repository.TestResultRepository;
 
+import java.util.List;
+
 @Service
 public class TestResultService {
 
@@ -18,5 +20,9 @@ public class TestResultService {
     public void saveResult(int wpm, int accuracy, User user) {
         TestResult result = new TestResult(wpm, accuracy, user);
         repository.save(result);
+    }
+    
+    public List<TestResult> getResultsForUser(User user) {
+        return repository.findByUser(user);
     }
 }
