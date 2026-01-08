@@ -52,7 +52,16 @@
     </div>
 </div>
 <script>
-const text = "The quick brown fox jumps over the lazy dog.";
+const advancedTexts = [
+    "The quick brown fox jumps over the lazy dog.",
+    "Typing speed and accuracy improve with daily practice.",
+    "Professional typists rely on muscle memory and rhythm."
+];
+
+function getRandomText(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+const text = getRandomText(advancedTexts);
 const textContainer = document.getElementById("text-to-type");
 const typingArea = document.getElementById("typing-area");
 const timerElement = document.getElementById("timer");
