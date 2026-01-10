@@ -8,6 +8,6 @@ A full-stack typing test application built using Spring Boot.
 - Typing speed test
 - Practice modes
 - Progress tracking
-- Voice typing
+- Dictation typing
 - Certificate generation
 
