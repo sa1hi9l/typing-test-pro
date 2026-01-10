@@ -25,4 +25,11 @@ public class PracticeController {
     public String advanced() {
         return "practice-advanced";
     }
+    
+    @GetMapping("/practice/audio")
+    public String audioPractice() {
+        return "practice-audio";
+    }
+
+
 }

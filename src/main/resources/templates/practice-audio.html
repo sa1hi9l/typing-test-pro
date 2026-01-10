@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Audio Dictation Practice</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .typing-text {
+            font-family: monospace;
+            font-size: 18px;
+            white-space: pre;
+        }
+        .correct { color: green; }
+        .incorrect { color: red; }
+        .current { text-decoration: underline; }
+    </style>
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <h3 class="text-center mb-3">Audio Dictation Practice 🎧</h3>
+
+    <audio id="audio" controls class="w-100 mb-3">
+        <source src="/audio/audio1.m4a" type="audio/mpeg">
+    </audio>
+
+    <div id="text" class="typing-text mb-3"></div>
+
+    <textarea id="input"
+              class="form-control"
+              rows="3"
+              placeholder="Type what you hear..."></textarea>
+
+    <p class="text-center mt-3 text-muted">
+        Listen carefully and type exactly what you hear.
+    </p>
+    <button class="btn btn-primary w-100" id="complete">Submit</button>
+</div>
+<script type="text/javascript">
+const targetText = "The quick brown fox jumps over the lazy dog.";
+const container = document.getElementById("text");
+const input = document.getElementById("input");
+
+/* Render hidden spans */
+container.innerHTML = "";
+targetText.split("").forEach(() => {
+    const span = document.createElement("span");
+    span.textContent = "_";
+    container.appendChild(span);
+});
+
+input.addEventListener("input", () => {
+    const spans = container.querySelectorAll("span");
+    const typed = input.value;
+
+    spans.forEach((span, i) => {
+        span.className = "";
+
+        if (typed[i] == null && i === typed.length) {
+            span.classList.add("current");
+        } else if (typed[i] === targetText[i]) {
+            span.textContent = typed[i];
+            span.classList.add("correct");
+        } else if (typed[i]) {
+            span.textContent = typed[i];
+            span.classList.add("incorrect");
+        }
+    });
+});
+
+document.getElementById("complete").addEventListener("click", () => {
+    const typed = input.value;
+    let correct = 0;
+
+    for (let i = 0; i < typed.length; i++) {
+        if (typed[i] === targetText[i]) {
+            correct++;
+        }
+    }
+
+    const accuracy = Math.round((correct / targetText.length) * 100) || 0;
+    alert(`Accuracy: ${accuracy}%`);
+});
+</script>
+</body>
+</html>

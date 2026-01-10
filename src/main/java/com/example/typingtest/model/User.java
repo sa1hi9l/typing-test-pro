@@ -15,11 +15,22 @@ public class User {
     @Column(nullable = false)
     private String password;
     
-    public User() {}
+    private String level;
     
-    public User(String username, String password) {
+    public String getLevel() {
+		return level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
+	}
+
+	public User() {}
+    
+    public User(String username, String password, String level) {
         this.username = username;
         this.password = password;
+        this.level = "beginner";
     }
     
     public Long getId() {

@@ -135,6 +135,28 @@ input.addEventListener("input", () => {
 document.getElementById("nextText").addEventListener("click", () => {
     location.reload();
 });
+let finalAccuracy = 0;
+let finalWpm = 0;
+const nextLevel = decideNextLevel(currentLevel, finalAccuracy, finalWpm);
+const messageBox = document.createElement("div");
+messageBox.className = "alert alert-info mt-3";
+if (nextLevel !== currentLevel) {
+    messageBox.textContent =
+        `Great job! You’re ready for ${nextLevel.toUpperCase()} level 🚀`;
+} else {
+    messageBox.textContent =
+        "Keep practicing to unlock the next level 💪";
+}
+
+document.body.appendChild(messageBox);
+if (nextLevel !== currentLevel) {
+    const btn = document.createElement("a");
+    btn.href = `/practice/${nextLevel}`;
+    btn.className = "btn btn-success mt-3";
+    btn.textContent = `Go to ${nextLevel} practice`;
+
+    document.body.appendChild(btn);
+}
 </script>
 
 </body>

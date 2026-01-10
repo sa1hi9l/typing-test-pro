@@ -13,12 +13,48 @@
         <a href="/practice/beginner" class="btn btn-success">Beginner</a>
         <a href="/practice/intermediate" class="btn btn-warning">Intermediate</a>
         <a href="/practice/advanced" class="btn btn-danger">Advanced</a>
+        <a href="/practice/audio" class="btn btn-info">Audio Dictation</a>
+        
     </div>
 
     <div class="mt-4">
         <a href="/dashboard">Back to Dashboard</a>
     </div>
 </div>
+<script>
+let finalAccuracy = 0;
+let finalWpm = 0;
+finalAccuracy = parseInt(accuracyElement.textContent);
+finalWpm = parseInt(wpmElement?.textContent || 0);
+function decideNextLevel(level, accuracy, wpm) {
+    if (level === "beginner" && accuracy >= 90) {
+        return "intermediate";
+    }
+    if (level === "intermediate" && accuracy >= 92 && wpm >= 35) {
+        return "advanced";
+    }
+    return level;
+}
+const nextLevel = decideNextLevel(currentLevel, finalAccuracy, finalWpm);
+const messageBox = document.createElement("div");
+messageBox.className = "alert alert-info mt-3";
+if (nextLevel !== currentLevel) {
+    messageBox.textContent =
+        `Great job! You’re ready for ${nextLevel.toUpperCase()} level 🚀`;
+} else {
+    messageBox.textContent =
+        "Keep practicing to unlock the next level 💪";
+}
 
+document.body.appendChild(messageBox);
+if (nextLevel !== currentLevel) {
+    const btn = document.createElement("a");
+    btn.href = `/practice/${nextLevel}`;
+    btn.className = "btn btn-success mt-3";
+    btn.textContent = `Go to ${nextLevel} practice`;
+
+    document.body.appendChild(btn);
+}
+</script>
 </body>
 </html>
