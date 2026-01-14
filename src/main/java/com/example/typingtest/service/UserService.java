@@ -18,7 +18,7 @@ public class UserService {
 		this.passwordEncoder = passwordEncoder;
 	}
     
-
+	@Transactional
     public User registerUser(String username, String rawPassword) {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() ->
