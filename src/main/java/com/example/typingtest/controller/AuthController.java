@@ -38,4 +38,12 @@ public class AuthController {
         return "login";
     }
 
+        @GetMapping("/test-db")
+    @ResponseBody
+    public String testDb() {
+        userService.registerUser("railway_test", "password123");
+        return "User inserted";
+    }
+
+
 }
