@@ -21,10 +21,16 @@ public class UserService {
     
 	@Transactional
     public User registerUser(String username, String rawPassword) {
+
+		System.out.println(">>> Registering user: " + username);
+		
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() ->
                     new UsernameNotFoundException("User not found"));
 
-        return userRepository.save(user);
+		User saved = userRepository.save(user);
+		System.out.println(">>> Saved user with ID: " + saved.getId());
+
+        return saved;
     }
 }
