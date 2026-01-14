@@ -3,6 +3,7 @@ package com.example.typingtest.service;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.typingtest.model.User;
 import com.example.typingtest.repository.UserRepository;
