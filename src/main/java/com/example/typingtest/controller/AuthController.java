@@ -30,7 +30,7 @@ public class AuthController {
 
         userService.registerUser(username, password);
         model.addAttribute("message", "Registration successful!");
-        return "signup";
+        return "redirect:/login";
     }
     
     @GetMapping("/login")
