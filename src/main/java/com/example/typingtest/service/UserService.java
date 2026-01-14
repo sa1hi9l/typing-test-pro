@@ -9,6 +9,7 @@ import com.example.typingtest.model.User;
 import com.example.typingtest.repository.UserRepository;
 
 @Service
+@Transactional
 public class UserService {
 
     private final UserRepository userRepository;
@@ -19,7 +20,6 @@ public class UserService {
 		this.passwordEncoder = passwordEncoder;
 	}
     
-	@Transactional
     public User registerUser(String username, String rawPassword) {
 
 		System.out.println(">>> Registering user: " + username);
