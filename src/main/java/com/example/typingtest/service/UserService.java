@@ -28,7 +28,7 @@ public class UserService {
                 .orElseThrow(() ->
                     new UsernameNotFoundException("User not found"));
 
-		User saved = userRepository.save(user);
+		User saved = userRepository.saveAndFlush(user);
 		System.out.println(">>> Saved user with ID: " + saved.getId());
 
         return saved;
