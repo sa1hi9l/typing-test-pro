@@ -30,7 +30,7 @@ public class User {
     public User(String username, String password, String level) {
         this.username = username;
         this.password = password;
-        this.level = "beginner";
+        this.level = level;
     }
     
     public Long getId() {
